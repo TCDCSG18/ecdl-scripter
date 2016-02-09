@@ -84,3 +84,13 @@ Run:
 bundle exec rails s
 ```
 Then navigate to [localhost:3000](localhost:3000)
+
+## Adding an admin account
+An admin account can be added through the rails console:
+```bash
+bundle exec rails c
+```
+From there you can specify the email and password:
+```bash
+AdminUser.create!(:email => 'admin@example.com', :password => 'password', :password_confirmation => 'password')
+```
