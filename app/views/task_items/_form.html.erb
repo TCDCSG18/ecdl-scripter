@@ -1,0 +1,33 @@
+<%= form_for(@task_item) do |f| %>
+  <% if @task_item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@task_item.errors.count, "error") %> prohibited this task_item from being saved:</h2>
+
+      <ul>
+      <% @task_item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :taskitem_id %><br>
+    <%= f.number_field :taskitem_id %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :skillset_id %><br>
+    <%= f.text_field :skillset_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

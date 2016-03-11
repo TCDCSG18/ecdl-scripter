@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  taskitem_id: 1
+  name: MyString
+  description: MyString
+  skillset_id: 
+
+two:
+  taskitem_id: 1
+  name: MyString
+  description: MyString
+  skillset_id: 

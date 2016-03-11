@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  resources :answers
+  resources :questions
+  resources :task_items
+  resources :skillsets
+  resources :categories
+  resources :ecdl_modules
   # get 'home/index'
 
   devise_for :reviewers
