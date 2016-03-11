@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Taskitem:</strong>
+  <%= @task_item.taskitem_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @task_item.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @task_item.description %>
+</p>
+
+<p>
+  <strong>Skillset:</strong>
+  <%= @task_item.skillset %>
+</p>
+
+<%= link_to 'Edit', edit_task_item_path(@task_item) %> |
+<%= link_to 'Back', task_items_path %>

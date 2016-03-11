@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Task Items</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Taskitem</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Skillset</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @task_items.each do |task_item| %>
+      <tr>
+        <td><%= task_item.taskitem_id %></td>
+        <td><%= task_item.name %></td>
+        <td><%= task_item.description %></td>
+        <td><%= task_item.skillset %></td>
+        <td><%= link_to 'Show', task_item %></td>
+        <td><%= link_to 'Edit', edit_task_item_path(task_item) %></td>
+        <td><%= link_to 'Destroy', task_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Task item', new_task_item_path %>

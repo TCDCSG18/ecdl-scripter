@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Skillsets</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Skillset</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Category</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @skillsets.each do |skillset| %>
+      <tr>
+        <td><%= skillset.skillset_id %></td>
+        <td><%= skillset.name %></td>
+        <td><%= skillset.description %></td>
+        <td><%= skillset.category %></td>
+        <td><%= link_to 'Show', skillset %></td>
+        <td><%= link_to 'Edit', edit_skillset_path(skillset) %></td>
+        <td><%= link_to 'Destroy', skillset, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Skillset', new_skillset_path %>

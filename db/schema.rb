@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160207181041) do
+ActiveRecord::Schema.define(version: 20160311142928) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -46,6 +46,46 @@ ActiveRecord::Schema.define(version: 20160207181041) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
 
+  create_table "answers", force: :cascade do |t|
+    t.integer  "answer_id"
+    t.string   "ans_text"
+    t.integer  "question_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "answers", ["question_id"], name: "index_answers_on_question_id"
+
+  create_table "categories", force: :cascade do |t|
+    t.integer  "category_id"
+    t.string   "name"
+    t.string   "description"
+    t.integer  "ecdl_module_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "categories", ["ecdl_module_id"], name: "index_categories_on_ecdl_module_id"
+
+  create_table "ecdl_modules", force: :cascade do |t|
+    t.integer  "module_id"
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.integer  "question_id"
+    t.string   "stem"
+    t.string   "correct_ans"
+    t.integer  "task_item_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "questions", ["task_item_id"], name: "index_questions_on_task_item_id"
+
   create_table "reviewers", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
     t.string   "encrypted_password",     default: "",    null: false
@@ -65,6 +105,28 @@ ActiveRecord::Schema.define(version: 20160207181041) do
   add_index "reviewers", ["approved"], name: "index_reviewers_on_approved"
   add_index "reviewers", ["email"], name: "index_reviewers_on_email", unique: true
   add_index "reviewers", ["reset_password_token"], name: "index_reviewers_on_reset_password_token", unique: true
+
+  create_table "skillsets", force: :cascade do |t|
+    t.integer  "skillset_id"
+    t.string   "name"
+    t.string   "description"
+    t.integer  "category_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "skillsets", ["category_id"], name: "index_skillsets_on_category_id"
+
+  create_table "task_items", force: :cascade do |t|
+    t.integer  "taskitem_id"
+    t.string   "name"
+    t.string   "description"
+    t.integer  "skillset_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "task_items", ["skillset_id"], name: "index_task_items_on_skillset_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

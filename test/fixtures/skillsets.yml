@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  skillset_id: 1
+  name: MyString
+  description: MyString
+  category_id: 
+
+two:
+  skillset_id: 1
+  name: MyString
+  description: MyString
+  category_id: 

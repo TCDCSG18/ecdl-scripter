@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Ecdl Modules</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Module</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ecdl_modules.each do |ecdl_module| %>
+      <tr>
+        <td><%= ecdl_module.module_id %></td>
+        <td><%= ecdl_module.name %></td>
+        <td><%= ecdl_module.description %></td>
+        <td><%= link_to 'Show', ecdl_module %></td>
+        <td><%= link_to 'Edit', edit_ecdl_module_path(ecdl_module) %></td>
+        <td><%= link_to 'Destroy', ecdl_module, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Ecdl module', new_ecdl_module_path %>
