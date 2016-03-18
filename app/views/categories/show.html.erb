@@ -17,7 +17,7 @@
 
 <p>
   <strong>Ecdl module:</strong>
-  <%= @category.ecdl_module %>
+  <%= link_to @category.ecdl_module.name, ecdl_module_path(@category.ecdl_module ) %>
 </p>
 
 <%= link_to 'Edit', edit_category_path(@category) %> |

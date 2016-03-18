@@ -12,7 +12,7 @@
 
 <p>
   <strong>Question:</strong>
-  <%= @answer.question %>
+  <%= link_to @answer.question.stem, question_path(@answer.question) %>
 </p>
 
 <%= link_to 'Edit', edit_answer_path(@answer) %> |

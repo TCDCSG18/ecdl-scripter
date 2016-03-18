@@ -17,7 +17,7 @@
 
 <p>
   <strong>Task item:</strong>
-  <%= @question.task_item %>
+  <%= link_to @question.task_item.name, task_item_path(@question.task_item) %>
 </p>
 
 <%= link_to 'Edit', edit_question_path(@question) %> |

@@ -17,7 +17,7 @@
 
 <p>
   <strong>Category:</strong>
-  <%= @skillset.category %>
+  <%= link_to @skillset.category.name, category_path(@skillset.category ) %>
 </p>
 
 <%= link_to 'Edit', edit_skillset_path(@skillset) %> |

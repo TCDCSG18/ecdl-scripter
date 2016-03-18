@@ -17,7 +17,7 @@
 
 <p>
   <strong>Skillset:</strong>
-  <%= @task_item.skillset %>
+  <%= link_to @task_item.skillset.name, skillset_path(@task_item.skillset ) %>
 </p>
 
 <%= link_to 'Edit', edit_task_item_path(@task_item) %> |
