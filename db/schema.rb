@@ -47,8 +47,8 @@ ActiveRecord::Schema.define(version: 20160311142928) do
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
 
   create_table "answers", force: :cascade do |t|
-    t.integer  "answer_id"
-    t.string   "ans_text"
+    t.string   "text"
+    t.boolean  "correct"
     t.integer  "question_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
@@ -78,7 +78,6 @@ ActiveRecord::Schema.define(version: 20160311142928) do
   create_table "questions", force: :cascade do |t|
     t.integer  "question_id"
     t.string   "stem"
-    t.string   "correct_ans"
     t.integer  "task_item_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false

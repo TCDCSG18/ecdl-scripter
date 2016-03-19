@@ -25,28 +25,24 @@
     <%= f.label :stem %><br>
     <%= f.text_field :stem %>
   </div>
-  <div class="field">
-    <%= f.label :correct_ans %><br>
-    <%= f.text_field :correct_ans %>
-  </div>
 
   <h2>Answers</h2>
   <%= f.fields_for :answers do |ff| %>
     <div>
       <div class="field">
-        <%= ff.label :answer_id %><br>
-        <%= ff.number_field :answer_id %>
+        <%= ff.label :correct_ans, 'Correct' %>
+        <%= ff.radio_button :correct, true %>
       </div>
       <div class="field">
-        <%= ff.label :ans_text %><br>
-        <%= ff.text_field :ans_text %>
+        <%= ff.label :text %><br>
+        <%= ff.text_field :text %>
       </div>
       <% if ff.object.persisted? %>
         <%= ff.label :_destroy, "Destroy" %>
         <%= ff.check_box :_destroy %>
       <% end %>
     </div>
-  <% end %></div></h2>
+  <% end %>
 
   <div class="actions">
     <%= f.submit %>
