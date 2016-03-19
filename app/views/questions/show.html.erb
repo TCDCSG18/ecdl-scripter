@@ -9,10 +9,25 @@
   <strong>Stem:</strong>
   <%= @question.stem %>
 </p>
+<p>
+  <%= image_tag @question.image.url, :size => "100x100" %>
+</p>
 
 <p>
   <strong>Task item:</strong>
   <%= link_to @question.task_item.name, task_item_path(@question.task_item) %>
+</p>
+
+<p>
+  <h2>Answers</h2>
+  <% @question.answers.each do |answer| %>
+    <p>
+      <strong>answer:</strong>
+      <%= link_to answer.text, answer_path(answer) %>
+      <strong>correct:</strong>
+      <%= answer.correct %>
+    </p>
+  <% end %>
 </p>
 
 <%= link_to 'Edit', edit_question_path(@question) %> |

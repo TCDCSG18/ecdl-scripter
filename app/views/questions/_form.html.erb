@@ -25,6 +25,9 @@
     <%= f.label :stem %><br>
     <%= f.text_field :stem %>
   </div>
+  <div>
+    <%= f.file_field :image %>
+  </div>
 
   <h2>Answers</h2>
   <%= f.fields_for :answers do |ff| %>
