@@ -1,4 +1,4 @@
-<%= form_for(@question) do |f| %>
+<%= form_for(setup_question(@question)) do |f| %>
   <% if @question.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
@@ -12,6 +12,12 @@
   <% end %>
 
   <div class="field">
+    <% options = options_from_collection_for_select(TaskItem.all, 'id', 'name') %>
+    <%= f.label :task_item_id %><br>
+    <%= f.select :task_item_id, options %>
+  </div>
+
+  <div class="field">
     <%= f.label :question_id %><br>
     <%= f.number_field :question_id %>
   </div>
@@ -23,10 +29,25 @@
     <%= f.label :correct_ans %><br>
     <%= f.text_field :correct_ans %>
   </div>
-  <div class="field">
-    <%= f.label :task_item_id %><br>
-    <%= f.text_field :task_item_id %>
-  </div>
+
+  <h2>Answers</h2>
+  <%= f.fields_for :answers do |ff| %>
+    <div>
+      <div class="field">
+        <%= ff.label :answer_id %><br>
+        <%= ff.number_field :answer_id %>
+      </div>
+      <div class="field">
+        <%= ff.label :ans_text %><br>
+        <%= ff.text_field :ans_text %>
+      </div>
+      <% if ff.object.persisted? %>
+        <%= ff.label :_destroy, "Destroy" %>
+        <%= ff.check_box :_destroy %>
+      <% end %>
+    </div>
+  <% end %></div></h2>
+
   <div class="actions">
     <%= f.submit %>
   </div>

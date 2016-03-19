@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  # most of these are to be removed, functionality accessible through admin panel
   resources :answers
   resources :questions
   resources :task_items

@@ -1,0 +1,12 @@
+<div class="answer">
+  <%= form.fields_for :answer do |f| %>
+    <div class="field">
+      <%= f.label :answer_id %><br>
+      <%= f.number_field :answer_id %>
+    </div>
+    <div class="field">
+      <%= f.label :ans_text %><br>
+      <%= f.text_field :ans_text %>
+    </div>
+  <% end %>
+</div>
