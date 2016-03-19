@@ -8,6 +8,7 @@
       <th>Answer</th>
       <th>Correct</th>
       <th>Question</th>
+      <th>Image</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -18,6 +19,13 @@
         <td><%= answer.text %></td>
         <td><%= answer.correct %></td>
         <td><%= answer.question %></td>
+        <td>
+          <% if answer.image.present? %>
+            <%= image_tag answer.image.url, :size => "50x50" %>
+          <% else %>
+            No image provided
+          <% end %>
+        </td>
         <td><%= link_to 'Show', answer %></td>
         <td><%= link_to 'Edit', edit_answer_path(answer) %></td>
         <td><%= link_to 'Destroy', answer, method: :delete, data: { confirm: 'Are you sure?' } %></td>

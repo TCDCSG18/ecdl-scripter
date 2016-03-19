@@ -9,8 +9,13 @@
   <strong>Stem:</strong>
   <%= @question.stem %>
 </p>
+
 <p>
-  <%= image_tag @question.image.url, :size => "100x100" %>
+  <% if @question.image.present? %>
+    <%= image_tag @question.image.url, :size => "100x100" %>
+  <% else %>
+    No image provided
+  <% end %>
 </p>
 
 <p>
@@ -26,6 +31,11 @@
       <%= link_to answer.text, answer_path(answer) %>
       <strong>correct:</strong>
       <%= answer.correct %>
+      <% if  answer.image.present? %>
+        <%= image_tag answer.image.url, :size => "100x100" %>
+      <% else %>
+        No image provided
+      <% end %>
     </p>
   <% end %>
 </p>

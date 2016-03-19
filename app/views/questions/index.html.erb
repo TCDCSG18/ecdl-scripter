@@ -7,6 +7,7 @@
     <tr>
       <th>Question ID</th>
       <th>Stem</th>
+      <th>Image</th>
       <th>Task item</th>
       <th colspan="3"></th>
     </tr>
@@ -17,6 +18,13 @@
       <tr>
         <td><%= question.question_id %></td>
         <td><%= question.stem %></td>
+        <td>
+          <% if question.image.present? %>
+            <%= image_tag question.image.url, :size => "50x50" %>
+          <% else %>
+            No image provided
+          <% end %>
+        </td>
         <td><%= question.task_item %></td>
         <td><%= link_to 'Show', question %></td>
         <td><%= link_to 'Edit', edit_question_path(question) %></td>

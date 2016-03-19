@@ -25,7 +25,7 @@
     <%= f.label :stem %><br>
     <%= f.text_field :stem %>
   </div>
-  <div>
+  <div class="field">
     <%= f.file_field :image %>
   </div>
 
@@ -39,6 +39,9 @@
       <div class="field">
         <%= ff.label :text %><br>
         <%= ff.text_field :text %>
+      </div>
+      <div class="field">
+        <%= ff.file_field :image %>
       </div>
       <% if ff.object.persisted? %>
         <%= ff.label :_destroy, "Destroy" %>

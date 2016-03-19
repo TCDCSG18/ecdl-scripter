@@ -6,6 +6,14 @@
 </p>
 
 <p>
+  <% if @answer.image.present? %>
+    <%= image_tag @answer.image.url, :size => "100x100" %>
+  <% else %>
+    No image provided
+  <% end %>
+</p>
+
+<p>
   <strong>Correct:</strong>
   <%= @answer.correct %>
 </p>
