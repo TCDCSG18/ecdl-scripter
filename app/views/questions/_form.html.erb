@@ -29,13 +29,28 @@
     <%= f.file_field :image %>
   </div>
 
-  <h2>Answers</h2>
-  <%= f.fields_for :answers do |ff| %>
-    <div>
+  <h2>Correct Answer</h2>
+  <%= f.fields_for :answers, @question.answers.first do |ff| %>
+    <%= ff.hidden_field :correct, :value => true %>
+    <div style="background-color:green;">
       <div class="field">
-        <%= ff.label :correct_ans, 'Correct' %>
-        <%= ff.radio_button :correct, true %>
+        <%= ff.label :text %><br>
+        <%= ff.text_field :text %>
       </div>
+      <div class="field">
+        <%= ff.file_field :image %>
+      </div>
+      <% if ff.object.persisted? %>
+        <%= ff.label :_destroy, "Destroy" %>
+        <%= ff.check_box :_destroy %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <h2>Incorrect Answers</h2>
+  <%= f.fields_for :answers, @question.answers[1..-1] do |ff| %>
+    <%= ff.hidden_field :correct, :value => false %>
+    <div>
       <div class="field">
         <%= ff.label :text %><br>
         <%= ff.text_field :text %>
