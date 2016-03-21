@@ -1,7 +1,16 @@
-<p>
-  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
-</p>
-
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <div class="navbar-brand" >
+        <%= image_tag("logo.png", alt: "ECDL Logo", class: "navbar-logo") %>
+      </div>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <p class="navbar-text">Signed in as <%= current_user.email %></p>
+      <%= link_to('Logout', destroy_user_session_path, :method => :delete, :class => "btn btn-default navbar-btn") %>
+    </ul>
+  </div>
+</nav>
 
 <p>
   we will put a list of task items that need questions here
