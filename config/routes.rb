@@ -1,17 +1,18 @@
 Rails.application.routes.draw do
-  # most of these are to be removed, functionality accessible through admin panel
-  resources :answers
-  resources :questions
-  resources :task_items
-  resources :skillsets
-  resources :categories
-  resources :ecdl_modules
-  # get 'home/index'
+  resources :reviews
 
   devise_for :reviewers
   devise_for :users
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
+
+  authenticate :user do
+    resources :questions, only: [:new, :create, :edit, :update, :destroy]
+  end
+  authenticate :reviewer do
+    resources :questions, only: [:show, :index]
+  end
+
 
   root 'home#index'
 

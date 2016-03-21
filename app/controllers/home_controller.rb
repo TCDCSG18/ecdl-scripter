@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   def index
     if user_signed_in?
-      redirect_to new_question_path
+      render "user_dashboard"
     end
     if reviewer_signed_in?
       # redirect_to reviewer_dashboard_path
