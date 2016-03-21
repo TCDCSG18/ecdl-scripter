@@ -10,8 +10,14 @@
   </p>
 </p>
 
+<h3>Rejected Questions:</h3>
 <p>
-  here we will put a list of questions that the user submitted for review that have been reviewed
+  <% Review.pending_for_user(current_user).find_each do |review| %>
+    <p>
+      <%= link_to review.question.stem, edit_question_path(review.question) %>
+      Reason: <%= review.comment %>
+    </p>
+  <% end %>
 </p>
 
 

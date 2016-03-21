@@ -4,6 +4,7 @@ class QuestionsController < InheritedResources::Base
     @question = Question.new(question_params)
     if @question.save
       @review = Review.new(:question => @question, :status => :being_reviewed)
+      @review.user = current_user
       if @review.save
         redirect_to root_path, notice: 'Question submitted successfully'
       else
