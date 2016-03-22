@@ -41,7 +41,7 @@ gem 'devise'
 # Images are good
 gem "paperclip", "~> 4.3"
 
-source 'https://rails-assets.org' do
+source 'https://rails-assets.tenex.tech' do
   # Twitter made a nice thing
   gem 'rails-assets-bootstrap'
 end

@@ -1,0 +1,26 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <div class="navbar-brand" >
+        <%= image_tag("logo.png", alt: "ECDL Logo", class: "navbar-logo") %>
+      </div>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <p class="navbar-text">Signed in as <%= current_reviewer.email %></p>
+      <%= link_to('Logout', destroy_reviewer_session_path, :method => :delete, :class => "btn btn-default navbar-btn") %>
+    </ul>
+  </div>
+</nav>
+
+
+<h3>Pending Questions:</h3>
+<p>
+  <% Review.pending_for_reviewer(current_reviewer).find_each do |review| %>
+    <p>
+      <%= link_to review.question.stem, edit_question_path(review.question) %>
+      Reason: <%= review.comment %>
+    </p>
+<% end %>
+</p>
+
+
