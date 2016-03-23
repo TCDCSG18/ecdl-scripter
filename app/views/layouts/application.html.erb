@@ -1,27 +1,45 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>ECDL Scripter</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-
-  <%= yield %>
-  <% if notice || alert %>
-    <div class="alert <%= notice ? "alert-success" : "" %><%= alert ? "alert-danger" : "" %> alert-dismissible" role="alert">
-      <button type="button" class="close" data-dismiss="alert">
-        <span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-      <div >
-        <% if notice %>
-          <%= notice %>
-        <% elsif alert %>
-          <%= alert %>
-        <% end %>
+  <head>
+    <title>ECDL Scripter</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <div class="navbar-brand" >
+            <%= link_to image_tag("logo.png", alt: "ECDL Logo", class: "navbar-logo"), root_path %>
+          </div>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+          <% if user_signed_in? %>
+            <p class="navbar-text">Signed in as <%= link_to current_user.email, edit_user_registration_path %></p>
+            <%= link_to('Logout', destroy_user_session_path, :method => :delete, :class => "btn btn-default navbar-btn") %>
+          <% elsif reviewer_signed_in? %>
+            <p class="navbar-text">Reviewer signed in as <%= link_to current_reviewer.email, edit_reviewer_registration_path %></p>
+            <%= link_to('Logout', destroy_reviewer_session_path, :method => :delete, :class => "btn btn-default navbar-btn") %>
+          <% end %>
+        </ul>
       </div>
-    </div>
-  <% end %>
+    </nav>
 
-</body>
+    <%= yield %>
+    <% if notice || alert %>
+      <div class="alert <%= notice ? "alert-success" : "" %><%= alert ? "alert-danger" : "" %> alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert">
+          <span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <div >
+          <% if notice %>
+            <%= notice %>
+          <% elsif alert %>
+            <%= alert %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+
+  </body>
 </html>

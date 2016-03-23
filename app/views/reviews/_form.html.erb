@@ -11,19 +11,27 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :comment %><br>
-    <%= f.text_field :comment %>
+  <div class="question-display">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">Current Question:</h3>
+      </div>
+      <div class="panel-body">
+        <!-- Show current state of question so that reviewer can see what they're reviewing
+        without navigating away -->
+        <%= render :partial => "questions/show", :locals => { :question => @review.question } %>
+      </div>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :question_id %><br>
-    <%= f.text_field :question_id %>
-  </div>
-  <div class="field">
-    <%= f.label :status %><br>
-    <%= f.text_field :status %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+
+  <div class="review-field-container">
+    <div class="field">
+      <%= f.label :comment %><br>
+      <%= f.text_field :comment %>
+    </div>
+    <div class="actions">
+      <%= f.submit 'Approve Question'%>
+      <%= f.submit 'Deny Question'%>
+    </div>
   </div>
 <% end %>

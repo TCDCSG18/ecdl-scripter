@@ -13,5 +13,10 @@ ActiveAdmin.register Category do
 #   permitted
 # end
 
+  controller do
+    def permitted_params
+      params.permit category: [ :name, :description, :category_ref, :ecdl_module_id ]
+    end
+  end
 
 end

@@ -1,0 +1,45 @@
+<div class="stem-image-container">
+  <div class="panel-top-pad"></div>
+  <div class="question-image-container">
+    <% if question.image.present? %>
+      <%= image_tag question.image.url, :size => "100x100" %>
+    <% end %>
+  </div>
+  <div class="question-stem-container">
+    <%= question.stem %>
+  </div>
+</div>
+
+<div class="panel panel-success">
+  <div class="panel-heading">
+    <h3 class="panel-title">Correct Answer:</h3>
+  </div>
+  <div class="panel-body">
+    <% if  question.answers.first.image.present? %>
+      <%= image_tag question.answers.first.image.url, :size => "100x100" %>
+    <% end %>
+    <%= question.answers.first.text %>
+  </div>
+</div>
+<div class="panel panel-danger">
+  <div class="panel-heading">
+    <h3 class="panel-title">Incorrect Answers:</h3>
+  </div>
+  <div class="panel-body">
+    <div class="panel-top-pad"></div>
+    <% question.answers[1..-1].each do |answer| %>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="question-image-container">
+            <% if  answer.image.present? %>
+              <%= image_tag answer.image.url, :size => "100x100" %>
+            <% end %>
+          </div>
+          <div class="question-stem-container">
+            <%= answer.text %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

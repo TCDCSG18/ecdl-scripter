@@ -13,5 +13,10 @@ ActiveAdmin.register TaskItem do
 #   permitted
 # end
 
+  controller do
+    def permitted_params
+      params.permit task_item: [ :name, :description, :task_item_ref, :skillset_id ]
+    end
+  end
 
 end
