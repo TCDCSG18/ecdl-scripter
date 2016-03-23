@@ -25,3 +25,21 @@
   left: 10vw;
   width: 80vw;
 }
+
+.question-display {
+  width: 80vw;
+  padding-left: 10vw;
+}
+
+.stem-image-container {
+  padding-bottom: 20px;
+}
+
+.panel-top-pad {
+  height: 20px;
+}
+
+.review-field-container {
+  width: 80vw;
+  padding-left: 10vw;
+}

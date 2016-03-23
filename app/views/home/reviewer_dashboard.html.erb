@@ -1,6 +1,6 @@
-<h3>Pending Questions:</h3>
+<h3>Question for review:</h3>
 <p>
-  <% Review.all.find_each do |review| %>
+  <% Review.where(status: :being_reviewed).find_each do |review| %>
     <p>
       <%= link_to review.question.stem, edit_review_path(review) %>
     </p>

@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :reviews
 
   devise_for :reviewers
   devise_for :users
@@ -11,6 +10,7 @@ Rails.application.routes.draw do
   end
   authenticate :reviewer do
     resources :questions, only: [:show, :index]
+    resources :reviews, only: [:edit, :update]
   end
 
 
