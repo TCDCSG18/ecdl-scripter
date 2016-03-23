@@ -13,5 +13,10 @@ ActiveAdmin.register Reviewer do
 #   permitted
 # end
 
+  controller do
+    def permitted_params
+      params.permit reviewer: [ :approved ]
+    end
+  end
 
 end

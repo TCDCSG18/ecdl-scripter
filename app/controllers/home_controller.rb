@@ -4,8 +4,6 @@ class HomeController < ApplicationController
       render "user_dashboard"
     end
     if reviewer_signed_in?
-      # redirect_to reviewer_dashboard_path
-      sign_out
       render "reviewer_dashboard"
     end
     if admin_user_signed_in?

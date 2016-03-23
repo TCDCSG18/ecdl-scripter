@@ -18,3 +18,10 @@
 .cent-pan{
   padding:150px;
 }
+
+.alert{
+  position: absolute;
+  top: 40vh;
+  left: 10vw;
+  width: 80vw;
+}
