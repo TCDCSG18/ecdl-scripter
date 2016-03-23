@@ -10,14 +10,14 @@
       </ul>
     </div>
   <% end %>
+  <h3>Current Question:</h3>
+  <!-- Show current state of question so that reviewer can see what they're reviewing
+  without navigating away -->
+  <%= render :partial => "questions/show", :locals => { :question => @review.question } %>
 
   <div class="field">
     <%= f.label :comment %><br>
     <%= f.text_field :comment %>
-  </div>
-  <div class="field">
-    <%= f.label :question_id %><br>
-    <%= f.text_field :question_id %>
   </div>
   <div class="field">
     <%= f.label :status %><br>

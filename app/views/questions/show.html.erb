@@ -1,44 +1,4 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Question ID:</strong>
-  <%= @question.question_id %>
-</p>
-
-<p>
-  <strong>Stem:</strong>
-  <%= @question.stem %>
-</p>
-
-<p>
-  <% if @question.image.present? %>
-    <%= image_tag @question.image.url, :size => "100x100" %>
-  <% else %>
-    No image provided
-  <% end %>
-</p>
-
-<p>
-  <strong>Task item:</strong>
-  <%= link_to @question.task_item.name, task_item_path(@question.task_item) %>
-</p>
-
-<p>
-  <h2>Answers</h2>
-  <% @question.answers.each do |answer| %>
-    <p>
-      <strong>answer:</strong>
-      <%= link_to answer.text, answer_path(answer) %>
-      <strong>correct:</strong>
-      <%= answer.correct %>
-      <% if  answer.image.present? %>
-        <%= image_tag answer.image.url, :size => "100x100" %>
-      <% else %>
-        No image provided
-      <% end %>
-    </p>
-  <% end %>
-</p>
+<%= render 'show', :question => @question %>
 
 <%= link_to 'Edit', edit_question_path(@question) %> |
 <%= link_to 'Back', questions_path %>
