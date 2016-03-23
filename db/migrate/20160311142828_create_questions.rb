@@ -1,7 +1,8 @@
 class CreateQuestions < ActiveRecord::Migration
   def change
     create_table :questions do |t|
-      t.integer :question_id
+      t.integer :question_ref
+      t.integer :review_id
       t.string :stem
       t.references :task_item, index: true, foreign_key: true
 

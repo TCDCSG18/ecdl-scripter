@@ -13,5 +13,10 @@ ActiveAdmin.register Skillset do
 #   permitted
 # end
 
+  controller do
+    def permitted_params
+      params.permit skillset: [ :name, :description, :skillset_ref, :category_id ]
+    end
+  end
 
 end

@@ -13,5 +13,11 @@ ActiveAdmin.register Answer do
 #   permitted
 # end
 
+  controller do
+    def permitted_params
+      params.permit answer: [ :question_id, :text, :correct, :image_file_name, :image_content_type, :image_file_size,
+                              :"image_updated_at(1i)", :"image_updated_at(2i)", :"image_updated_at(3i)", :"image_updated_at(4i)", :"image_updated_at(5i)"]
+    end
+  end
 
 end

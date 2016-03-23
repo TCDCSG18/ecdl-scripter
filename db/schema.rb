@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 20160321000619) do
   add_index "answers", ["question_id"], name: "index_answers_on_question_id"
 
   create_table "categories", force: :cascade do |t|
-    t.integer  "category_id"
+    t.integer  "category_ref"
     t.string   "name"
     t.string   "description"
     t.integer  "ecdl_module_id"
@@ -72,7 +72,7 @@ ActiveRecord::Schema.define(version: 20160321000619) do
   add_index "categories", ["ecdl_module_id"], name: "index_categories_on_ecdl_module_id"
 
   create_table "ecdl_modules", force: :cascade do |t|
-    t.integer  "module_id"
+    t.integer  "module_ref"
     t.string   "name"
     t.string   "description"
     t.datetime "created_at",  null: false
@@ -80,7 +80,8 @@ ActiveRecord::Schema.define(version: 20160321000619) do
   end
 
   create_table "questions", force: :cascade do |t|
-    t.integer  "question_id"
+    t.integer  "question_ref"
+    t.integer  "review_id"
     t.string   "stem"
     t.integer  "task_item_id"
     t.datetime "created_at",         null: false
@@ -125,23 +126,23 @@ ActiveRecord::Schema.define(version: 20160321000619) do
   add_index "reviews", ["question_id"], name: "index_reviews_on_question_id"
 
   create_table "skillsets", force: :cascade do |t|
-    t.integer  "skillset_id"
+    t.integer  "skillset_ref"
     t.string   "name"
     t.string   "description"
     t.integer  "category_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   add_index "skillsets", ["category_id"], name: "index_skillsets_on_category_id"
 
   create_table "task_items", force: :cascade do |t|
-    t.integer  "taskitem_id"
+    t.integer  "task_item_ref"
     t.string   "name"
     t.string   "description"
     t.integer  "skillset_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   add_index "task_items", ["skillset_id"], name: "index_task_items_on_skillset_id"

@@ -13,5 +13,10 @@ ActiveAdmin.register EcdlModule do
 #   permitted
 # end
 
+  controller do
+    def permitted_params
+      params.permit ecdl_module: [ :name, :description, :module_ref ]
+    end
+  end
 
 end
