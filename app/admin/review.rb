@@ -13,5 +13,10 @@ ActiveAdmin.register Review do
 #   permitted
 # end
 
+  controller do
+    def permitted_params
+      params.permit review: [ :question_id, :user_id, :comment, :status ]
+    end
+  end
 
 end

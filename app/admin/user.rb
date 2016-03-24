@@ -13,5 +13,11 @@ ActiveAdmin.register User do
 #   permitted
 # end
 
+  index do
+    column :id
+    column :email
+    column :encrypted_password
+    actions
+  end
 
 end

@@ -27,11 +27,11 @@
   <div class="review-field-container">
     <div class="field">
       <%= f.label :comment %><br>
-      <%= f.text_field :comment %>
+      <%= f.text_field :comment, :class => "form-control" %>
     </div>
     <div class="actions">
-      <%= f.submit 'Approve Question'%>
-      <%= f.submit 'Deny Question'%>
+      <%= f.submit 'Approve Question', :class => 'btn btn-success'%>
+      <%= f.submit 'Deny Question', :class => 'btn btn-danger'%>
     </div>
   </div>
 <% end %>

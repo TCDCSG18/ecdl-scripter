@@ -44,6 +44,7 @@ gem "paperclip", "~> 4.3"
 source 'https://rails-assets.org' do
   # Twitter made a nice thing
   gem 'rails-assets-bootstrap'
+  gem 'rails-assets-bootstrap-select'
 end
 
 group :development, :test do

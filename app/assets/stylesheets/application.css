@@ -13,22 +13,25 @@
  *= require_tree .
  *= require_self
  *= require bootstrap
+ *= require bootstrap-select
  */
 
 .cent-pan{
-  padding:150px;
+  padding-top: 50px;
+  padding-right: 150px;
+  padding-left: 150px;
 }
 
 .alert{
   position: absolute;
-  top: 40vh;
+  top: 10vh;
   left: 10vw;
   width: 80vw;
 }
 
 .question-display {
   width: 80vw;
-  padding-left: 10vw;
+  margin-left: 10vw;
 }
 
 .stem-image-container {
@@ -42,4 +45,26 @@
 .review-field-container {
   width: 80vw;
   padding-left: 10vw;
+}
+
+.question-meta {
+  padding: 20px;
+}
+
+.question-meta input[type=number] {
+  width: 100px;
+}
+
+.well {
+  margin-left: 10vw;
+  width: 80vw;
+}
+
+.actions {
+  text-align: center;
+  padding: 20px;
+}
+
+.input-spacer{
+  width: 40px;
 }
