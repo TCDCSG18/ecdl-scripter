@@ -18,8 +18,8 @@
 
 .cent-pan{
   padding-top: 50px;
-  padding-right: 150px;
-  padding-left: 150px;
+  padding-right: 450px;
+  padding-left: 450px;
 }
 
 .alert{
@@ -48,7 +48,7 @@
 }
 
 .question-meta {
-  padding: 20px;
+  padding-bottom: 30px;
 }
 
 .question-meta input[type=number] {
