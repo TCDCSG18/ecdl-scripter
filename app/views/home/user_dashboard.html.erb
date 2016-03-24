@@ -1,15 +1,21 @@
 <p>
   <p>
-    <%= link_to 'New Question', new_question_path %>
+    <%= button_to 'New Question', new_question_path, :class => "btn btn-primary btn-lg" %>
   </p>
 </p>
 
-<h3>Rejected Questions:</h3>
 <p>
-  <% Review.where(user: current_user).being_scripted.find_each do |review| %>
-    <p>
-      <%= link_to review.question.stem, edit_question_path(review.question) %>
-      Reason: <%= review.comment %>
-    </p>
-  <% end %>
 </p>
+<div class="question-display">
+  <div class="panel panel-primary">
+    <div class="panel-heading">Questions for Review</div>
+    <div class="list-group">
+      <% Review.where(user: current_user).being_scripted.find_each do |review| %>
+        <div class="list-group-item">
+          <%= link_to review.question.stem, edit_question_path(review.question) %>
+          Reason: <%= review.comment %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

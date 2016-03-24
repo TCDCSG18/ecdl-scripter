@@ -13,6 +13,13 @@ ActiveAdmin.register Reviewer do
 #   permitted
 # end
 
+  index do
+    column :id
+    column :email
+    column :approved
+    actions
+  end
+
   controller do
     def permitted_params
       params.permit reviewer: [ :approved ]
