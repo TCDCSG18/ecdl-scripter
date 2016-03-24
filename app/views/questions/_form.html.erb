@@ -17,13 +17,18 @@
       </div>
       <div class="panel-body">
         <div class="question-meta">
-            <%= f.label :task_item_id, "Task Item:" %>
-            <%= f.select :task_item_id, options_from_collection_for_select(TaskItem.all, 'id', 'name') %>
-            <%= f.label :question_ref, "Question Reference:" %>
-            <%= f.number_field :question_ref %>
+          <div class="input-group">
+            <span class="input-group-addon" id="basic-addon1">Task Item: </span>
+            <%= f.select :task_item_id, options_from_collection_for_select(TaskItem.all, 'id', 'name'),{}, :class => "selectpicker" %>
+            <span class="input-group-addon" id="basic-addon1">Question Reference: </span>
+            <%= f.number_field :question_ref, :class => "form-control" %>
+          </div>
         </div>
 
-        <%= f.text_field :stem %>
+        <div class="input-group">
+          <span class="input-group-addon" id="basic-addon1">Stem: </span>
+          <%= f.text_field :stem, :class => "form-control" %>
+        </div>
         <%= f.file_field :image %>
 
         <div class="panel-top-pad"></div>
@@ -37,7 +42,7 @@
             <%= f.fields_for :answers, @question.answers.first do |ff| %>
               <%= ff.hidden_field :correct, :value => true %>
               <div class="field">
-                <%= ff.text_field :text %>
+                <%= ff.text_field :text, :class => "form-control" %>
               </div>
               <div class="field">
                 <%= ff.file_field :image %>
@@ -60,7 +65,7 @@
               <%= ff.hidden_field :correct, :value => false %>
               <div>
                 <div class="field">
-                  <%= ff.text_field :text %>
+                  <%= ff.text_field :text, :class => "form-control" %>
                 </div>
                 <div class="field">
                   <%= ff.file_field :image %>
@@ -77,7 +82,7 @@
       </div>
 
       <div class="actions">
-        <%= f.submit %>
+        <%= f.submit 'Submit Question', :class => 'btn btn-success' %>
       </div>
     </div>
   </div>

@@ -1,14 +1,12 @@
-<p>
-  <p>
-    <%= button_to 'New Question', new_question_path, :class => "btn btn-primary btn-lg" %>
-  </p>
-</p>
+<div class="actions">
+  <%= button_to "New Question", new_question_path, method: :get, :class => 'btn btn-success btn-lg' %>
+</div>
 
 <p>
 </p>
 <div class="question-display">
   <div class="panel panel-primary">
-    <div class="panel-heading">Questions for Review</div>
+    <div class="panel-heading">Questions for Rescripting</div>
     <div class="list-group">
       <% Review.where(user: current_user).being_scripted.find_each do |review| %>
         <div class="list-group-item">

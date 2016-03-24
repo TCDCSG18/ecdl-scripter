@@ -13,10 +13,13 @@
  *= require_tree .
  *= require_self
  *= require bootstrap
+ *= require bootstrap-select
  */
 
 .cent-pan{
-  padding:150px;
+  padding-top: 50px;
+  padding-right: 150px;
+  padding-left: 150px;
 }
 
 .alert{
@@ -55,4 +58,13 @@
 .well {
   margin-left: 10vw;
   width: 80vw;
+}
+
+.actions {
+  text-align: center;
+  padding: 20px;
+}
+
+.input-spacer{
+  width: 40px;
 }
