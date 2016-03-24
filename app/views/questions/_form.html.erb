@@ -4,68 +4,82 @@
       <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
 
       <ul>
-      <% @question.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% @question.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <% options = options_from_collection_for_select(TaskItem.all, 'id', 'name') %>
-    <%= f.label :task_item_id %><br>
-    <%= f.select :task_item_id, options %>
-  </div>
-
-  <div class="field">
-    <%= f.label :question_ref %><br>
-    <%= f.number_field :question_ref %>
-  </div>
-  <div class="field">
-    <%= f.label :stem %><br>
-    <%= f.text_field :stem %>
-  </div>
-  <div class="field">
-    <%= f.file_field :image %>
-  </div>
-
-  <h2>Correct Answer</h2>
-  <%= f.fields_for :answers, @question.answers.first do |ff| %>
-    <%= ff.hidden_field :correct, :value => true %>
-    <div style="background-color:green;">
-      <div class="field">
-        <%= ff.label :text %><br>
-        <%= ff.text_field :text %>
+  <div class="question-display">
+    <div class="panel panel-warning">
+      <div class="panel-heading">
+        <h3 class="panel-title">New Question</h3>
       </div>
-      <div class="field">
-        <%= ff.file_field :image %>
+      <div class="panel-body">
+        <div class="question-meta">
+            <%= f.label :task_item_id, "Task Item:" %>
+            <%= f.select :task_item_id, options_from_collection_for_select(TaskItem.all, 'id', 'name') %>
+            <%= f.label :question_ref, "Question Reference:" %>
+            <%= f.number_field :question_ref %>
+        </div>
+
+        <%= f.text_field :stem %>
+        <%= f.file_field :image %>
+
+        <div class="panel-top-pad"></div>
+
+        <div class="panel panel-success">
+          <div class="panel-heading">
+            <h3 class="panel-title">Correct Answer:</h3>
+          </div>
+          <div class="panel-body">
+            <div class="panel-top-pad"></div>
+            <%= f.fields_for :answers, @question.answers.first do |ff| %>
+              <%= ff.hidden_field :correct, :value => true %>
+              <div class="field">
+                <%= ff.text_field :text %>
+              </div>
+              <div class="field">
+                <%= ff.file_field :image %>
+              </div>
+              <% if ff.object.persisted? %>
+                <%= ff.label :_destroy, "Destroy" %>
+                <%= ff.check_box :_destroy %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="panel panel-danger">
+          <div class="panel-heading">
+            <h3 class="panel-title">Incorrect Answers:</h3>
+          </div>
+          <div class="panel-body">
+            <div class="panel-top-pad"></div>
+            <%= f.fields_for :answers, @question.answers[1..-1] do |ff| %>
+              <%= ff.hidden_field :correct, :value => false %>
+              <div>
+                <div class="field">
+                  <%= ff.text_field :text %>
+                </div>
+                <div class="field">
+                  <%= ff.file_field :image %>
+                </div>
+                <% if ff.object.persisted? %>
+                  <%= ff.label :_destroy, "Destroy" %>
+                  <%= ff.check_box :_destroy %>
+                <% end %>
+              </div>
+              <div class="panel-top-pad"></div>
+            <% end %>
+          </div>
+        </div>
       </div>
-      <% if ff.object.persisted? %>
-        <%= ff.label :_destroy, "Destroy" %>
-        <%= ff.check_box :_destroy %>
-      <% end %>
+
+      <div class="actions">
+        <%= f.submit %>
+      </div>
     </div>
-  <% end %>
-
-  <h2>Incorrect Answers</h2>
-  <%= f.fields_for :answers, @question.answers[1..-1] do |ff| %>
-    <%= ff.hidden_field :correct, :value => false %>
-    <div>
-      <div class="field">
-        <%= ff.label :text %><br>
-        <%= ff.text_field :text %>
-      </div>
-      <div class="field">
-        <%= ff.file_field :image %>
-      </div>
-      <% if ff.object.persisted? %>
-        <%= ff.label :_destroy, "Destroy" %>
-        <%= ff.check_box :_destroy %>
-      <% end %>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit %>
   </div>
+</div>
 <% end %>

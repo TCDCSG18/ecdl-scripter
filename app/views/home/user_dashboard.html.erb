@@ -1,18 +1,15 @@
 <p>
-  we will put a list of task items that need questions here
   <p>
-    for now we will just leave this link to make a new question -&gt; <%= link_to 'New Question', new_question_path %>
+    <%= link_to 'New Question', new_question_path %>
   </p>
 </p>
 
 <h3>Rejected Questions:</h3>
 <p>
-  <% Review.pending_for_user(current_user).find_each do |review| %>
+  <% Review.where(user: current_user).being_scripted.find_each do |review| %>
     <p>
       <%= link_to review.question.stem, edit_question_path(review.question) %>
       Reason: <%= review.comment %>
     </p>
   <% end %>
 </p>
-
-
