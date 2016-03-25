@@ -4,16 +4,16 @@
     <div class="list-group">
       <% EcdlModule.find_each do |ecdl_module| %>
           <% if ecdl_module.has_reviews? %>
-              <p><%= ecdl_module.name %></p>
+              <p><h4>ECDL Module: </h4></h4><%= ecdl_module.name %></p>
               <% ecdl_module.categories.find_each do |category| %>
                   <% if category.has_reviews? %>
-                      <p><%= category.name %></p>
+                      <p><h5>Category: </h5><%= category.name %></p>
                       <% category.skillsets.find_each do |skillset| %>
                           <% if skillset.has_reviews? %>
-                              <p><%= skillset.name %></p>
+                              <p><h5>Skill Set: </h5><%= skillset.name %></p>
                               <% skillset.task_items.find_each do |task_item| %>
                                   <% if task_item.has_reviews? %>
-                                      <p><%= task_item.name %></p>
+                                      <p><h5>Task Item: </h5><%= task_item.name %></p>
                                       <% task_item.questions.find_each do |question| %>
                                           <% if question.review.reviewing? %>
                                               <%= link_to question.stem, edit_review_path(question.review), :class => "list-group-item" %>
