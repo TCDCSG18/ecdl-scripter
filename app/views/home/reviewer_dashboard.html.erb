@@ -2,8 +2,22 @@
   <div class="panel panel-primary">
     <div class="panel-heading">Questions for Review</div>
     <div class="list-group">
-      <% Review.being_reviewed.find_each do |review| %>
-        <%= link_to review.question.stem, edit_review_path(review), :class => "list-group-item" %>
+      <% EcdlModule.find_each do |ecdl_module| %>
+          <%= ecdl_module.name %>
+          <% ecdl_module.categories.find_each do |category| %>
+              <%= category.name %>
+              <% category.skillsets.find_each do |skillset| %>
+                  <%= skillset.name %>
+                  <% skillset.task_items.find_each do |task_item| %>
+                      <%= task_item.name %>
+                      <% task_item.questions.find_each do |question| %>
+                          <% if question.review.reviewing? %>
+                              <%= link_to question.stem, edit_review_path(question.review), :class => "list-group-item" %>
+                          <% end %>
+                      <% end %>
+                  <% end %>
+              <% end %>
+          <% end %>
       <% end %>
     </div>
   </div>
