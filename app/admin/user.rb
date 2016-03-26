@@ -16,7 +16,6 @@ ActiveAdmin.register User do
   index do
     column :id
     column :email
-    column :encrypted_password
     column :approved
     actions
   end
@@ -26,5 +25,19 @@ ActiveAdmin.register User do
       params.permit user: [ :approved ]
     end
   end
+
+  # limit fields in user new/edit form
+  form do |f|
+    f.semantic_errors
+    inputs do
+      input :email
+      input :approved
+    end
+    f.actions
+  end
+
+  filter :email
+  filter :id
+  filter :approved
 
 end
