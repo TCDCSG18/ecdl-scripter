@@ -26,4 +26,18 @@ ActiveAdmin.register Reviewer do
     end
   end
 
+  # limit fields in reviewer new/edit form
+  form do |f|
+    f.semantic_errors
+    inputs do
+      input :email
+      input :approved
+    end
+    f.actions
+  end
+
+  filter :email
+  filter :id
+  filter :approved
+
 end
