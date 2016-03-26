@@ -16,15 +16,34 @@
         <h3 class="panel-title">New Question</h3>
       </div>
       <div class="panel-body">
-        <div class="question-meta">
-          <div class="input-group">
-            <span class="input-group-addon" id="basic-addon1">Task Item: </span>
-            <%= f.select :task_item_id, options_from_collection_for_select(TaskItem.all, 'id', 'name'),{}, :class => "selectpicker" %>
-            <span class="input-group-addon" id="basic-addon1">Question Reference: </span>
-            <%= f.number_field :question_ref, :class => "form-control" %>
+        <div class="question-meta row">
+          <div class="col-md-6">
+            <div class="input-group">
+              <span class="input-group-addon">Task Item: </span>
+              <%= f.select :task_item_id, options_from_collection_for_select(TaskItem.all, 'id', 'name'),{}, :class => "selectpicker" %>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="input-group">
+              <span class="input-group-addon">Question Reference: </span>
+              <%= f.number_field :question_ref, :class => "form-control" %>
+            </div>
           </div>
         </div>
-
+        <div class="row question-meta">
+          <div class="col-md-4 col-md-offset-4">
+            <div class="input-group">
+              <span class="input-group-addon">Theoretical: </span>
+              <span class="input-group-addon">
+                <%= f.radio_button :practical, false , :checked => true , :value => false %>
+              </span>
+              <span class="input-group-addon">Practical: </span>
+              <span class="input-group-addon">
+                <%= f.radio_button :practical, true, :value => true %>
+              </span>
+            </div>
+          </div>
+        </div>
         <div class="input-group">
           <span class="input-group-addon" id="basic-addon1">Stem: </span>
           <%= f.text_field :stem, :class => "form-control" %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160325152541) do
+ActiveRecord::Schema.define(version: 20160326173932) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -90,6 +90,7 @@ ActiveRecord::Schema.define(version: 20160325152541) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.boolean  "practical"
   end
 
   add_index "questions", ["task_item_id"], name: "index_questions_on_task_item_id"
