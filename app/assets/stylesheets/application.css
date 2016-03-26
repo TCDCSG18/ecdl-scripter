@@ -51,10 +51,6 @@
   padding-bottom: 30px;
 }
 
-.question-meta input[type=number] {
-  width: 100px;
-}
-
 .well {
   margin-left: 10vw;
   width: 80vw;
