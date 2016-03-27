@@ -2,8 +2,20 @@
   <%= button_to "New Question", new_question_path, method: :get, :class => 'btn btn-success btn-lg' %>
 </div>
 
-<p>
-</p>
+<div class="question-display">
+  <div class="panel panel-primary">
+    <div class="panel-heading">Questions for Scripting</div>
+    <div class="list-group">
+      <% Review.all.idle.find_each do |review| %>
+        <div>
+          <%= link_to (review.question.task_item.absolute_ref + " " + review.question.task_item.name ),
+            edit_question_path(review.question), class: "list-group-item" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
 <div class="question-display">
   <div class="panel panel-primary">
     <div class="panel-heading">Questions for Rescripting</div>

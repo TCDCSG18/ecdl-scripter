@@ -28,11 +28,12 @@ ActiveAdmin.register SyllabusItem do
 
   controller do
     def permitted_params
-      params.permit syllabus_item: [ :name, questions_attributes: [:task_item, :practical] ]
+      params.permit syllabus_item: [ :name, questions_attributes: [:task_item_id, :practical] ]
     end
     def new
       @syllabus_item = SyllabusItem.new
-      80.times { @syllabus_item.questions.build }
+      # using 8 here instead of 80 for testing, no need to make 7trillion questions when testing functionality
+      8.times { @syllabus_item.questions.build }
       @syllabus_item
     end
   end
