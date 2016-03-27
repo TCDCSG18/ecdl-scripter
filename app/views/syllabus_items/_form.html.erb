@@ -1,0 +1,21 @@
+<%= form_for(@syllabus_item) do |f| %>
+  <% if @syllabus_item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@syllabus_item.errors.count, "error") %> prohibited this syllabus_item from being saved:</h2>
+
+      <ul>
+      <% @syllabus_item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

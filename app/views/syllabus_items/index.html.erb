@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Syllabus Items</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @syllabus_items.each do |syllabus_item| %>
+      <tr>
+        <td><%= syllabus_item.name %></td>
+        <td><%= link_to 'Show', syllabus_item %></td>
+        <td><%= link_to 'Edit', edit_syllabus_item_path(syllabus_item) %></td>
+        <td><%= link_to 'Destroy', syllabus_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Syllabus item', new_syllabus_item_path %>
