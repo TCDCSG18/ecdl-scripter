@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @test_script.name %>
+</p>
+
+<p>
+  <strong>Syllabus item:</strong>
+  <%= @test_script.syllabus_item %>
+</p>
+
+<%= link_to 'Edit', edit_test_script_path(@test_script) %> |
+<%= link_to 'Back', test_scripts_path %>

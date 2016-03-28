@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160327173714) do
+ActiveRecord::Schema.define(version: 20160328160138) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -92,6 +92,10 @@ ActiveRecord::Schema.define(version: 20160327173714) do
     t.datetime "image_updated_at"
     t.boolean  "practical"
     t.integer  "syllabus_item_id"
+    t.boolean  "belongs_to_test_0"
+    t.boolean  "belongs_to_test_1"
+    t.boolean  "belongs_to_test_2"
+    t.boolean  "belongs_to_test_3"
   end
 
   add_index "questions", ["task_item_id"], name: "index_questions_on_task_item_id"
@@ -154,6 +158,15 @@ ActiveRecord::Schema.define(version: 20160327173714) do
   end
 
   add_index "task_items", ["skillset_id"], name: "index_task_items_on_skillset_id"
+
+  create_table "test_scripts", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "syllabus_item_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "test_scripts", ["syllabus_item_id"], name: "index_test_scripts_on_syllabus_item_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false

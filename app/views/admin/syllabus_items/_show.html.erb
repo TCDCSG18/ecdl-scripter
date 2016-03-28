@@ -1,0 +1,25 @@
+<table>
+  <thead>
+    <tr>
+      <th>Question</th>
+      <th>Status</th>
+      <th><%= link_to syllabus_item.test_scripts[0].name, admin_test_script_path(syllabus_item.test_scripts[0]) %></th>
+      <th><%= link_to syllabus_item.test_scripts[1].name, admin_test_script_path(syllabus_item.test_scripts[1]) %></th>
+      <th><%= link_to syllabus_item.test_scripts[2].name, admin_test_script_path(syllabus_item.test_scripts[2]) %></th>
+      <th><%= link_to syllabus_item.test_scripts[3].name, admin_test_script_path(syllabus_item.test_scripts[3]) %></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% syllabus_item.questions.each do |question| %>
+      <tr>
+        <td><%= link_to question.task_item.absolute_ref, admin_question_path(question) %></td>
+        <td><%= link_to question.review.status, admin_review_path(question.review) %></td>
+        <td><% if question.belongs_to_test_0 %>✔<% end %></td>
+        <td><% if question.belongs_to_test_1 %>✔<% end %></td>
+        <td><% if question.belongs_to_test_2 %>✔<% end %></td>
+        <td><% if question.belongs_to_test_3 %>✔<% end %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

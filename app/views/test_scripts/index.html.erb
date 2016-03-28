@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Test Scripts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Syllabus item</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @test_scripts.each do |test_script| %>
+      <tr>
+        <td><%= test_script.name %></td>
+        <td><%= test_script.syllabus_item %></td>
+        <td><%= link_to 'Show', test_script %></td>
+        <td><%= link_to 'Edit', edit_test_script_path(test_script) %></td>
+        <td><%= link_to 'Destroy', test_script, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Test script', new_test_script_path %>
