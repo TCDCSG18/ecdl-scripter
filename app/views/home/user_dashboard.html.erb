@@ -1,9 +1,20 @@
-<div class="actions">
-  <%= button_to "New Question", new_question_path, method: :get, :class => 'btn btn-success btn-lg' %>
+<div class="question-display">
+  <div class="panel panel-primary">
+    <div class="panel-heading">Questions for Scripting</div>
+    <div class="list-group">
+      <% Review.all.idle.find_each do |review| %>
+        <div>
+          <%= link_to (review.question.task_item.absolute_ref + " " + review.question.task_item.name ),
+            edit_question_path(review.question), class: "list-group-item" %>
+        </div>
+      <% end %>
+      <% if Review.all.idle.blank? %>
+        <div class="actions">There are no new question to script at the moment.</div>
+      <% end %>
+    </div>
+  </div>
 </div>
 
-<p>
-</p>
 <div class="question-display">
   <div class="panel panel-primary">
     <div class="panel-heading">Questions for Rescripting</div>
@@ -13,6 +24,9 @@
           <%= link_to review.question.stem, edit_question_path(review.question) %>
           Reason: <%= review.comment %>
       </div>
+      <% end %>
+      <% if Review.where(user: current_user).being_scripted.blank? %>
+        <div class="actions">There are no question to rescript at the moment.</div>
       <% end %>
     </div>
   </div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160326173932) do
+ActiveRecord::Schema.define(version: 20160327173714) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(version: 20160326173932) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.boolean  "practical"
+    t.integer  "syllabus_item_id"
   end
 
   add_index "questions", ["task_item_id"], name: "index_questions_on_task_item_id"
@@ -136,6 +137,12 @@ ActiveRecord::Schema.define(version: 20160326173932) do
   end
 
   add_index "skillsets", ["category_id"], name: "index_skillsets_on_category_id"
+
+  create_table "syllabus_items", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "task_items", force: :cascade do |t|
     t.integer  "task_item_ref"
