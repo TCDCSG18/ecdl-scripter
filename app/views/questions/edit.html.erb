@@ -1,6 +1,6 @@
-<% if !Review.where(question: @question).first.idle? %>
+<% if !@question.review.idle? %>
   <div class="well">
-    Reason for failure: <%= Review.where(question: @question).first.comment %>
+    Reason for failure: <%= @question.review.comment %>
   </div>
 <% end %>
 <%= render 'form' %>
