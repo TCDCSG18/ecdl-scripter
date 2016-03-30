@@ -12,6 +12,7 @@ ActiveAdmin.register TaskItem do
 #   permitted << :other if resource.something?
 #   permitted
 # end
+  menu priority: 6
 
   controller do
     def permitted_params

@@ -12,6 +12,7 @@ ActiveAdmin.register SyllabusItem do
 #   permitted << :other if resource.something?
 #   permitted
 # end
+  menu priority: 1, label: "Syllabuses"
 
 
   form do |f|

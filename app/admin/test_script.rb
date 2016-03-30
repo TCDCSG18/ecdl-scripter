@@ -13,5 +13,12 @@ ActiveAdmin.register TestScript do
 #   permitted
 # end
 
+  menu priority: 2
+
+  controller do
+    def permitted_params
+      params.permit test_script: [ :name ]
+    end
+  end
 
 end

@@ -12,6 +12,7 @@ ActiveAdmin.register Reviewer do
 #   permitted << :other if resource.something?
 #   permitted
 # end
+  menu priority: 11
 
   index do
     column :id

@@ -12,6 +12,7 @@ ActiveAdmin.register User do
 #   permitted << :other if resource.something?
 #   permitted
 # end
+  menu priority: 12
 
   index do
     column :id
