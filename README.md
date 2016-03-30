@@ -59,6 +59,19 @@ If the result of the following command contains `.nvm` as opposed to `/usr/bin` 
 which node
 ```
 
+### [Paperclip Dependencies](https://github.com/thoughtbot/paperclip#requirements)
+We use paperclip for image processing so we will need to install their dependencies, the main thing we need is ImageMagick.
+
+Ubuntu
+```bash
+sudo apt-get install imagemagick -y
+```
+OS X w/ [homebrew](https://github.com/Homebrew/homebrew)
+```bash
+brew install imagemagick
+```
+
+
 
 ## Build
 Clone the repo:

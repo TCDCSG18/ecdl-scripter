@@ -12,6 +12,15 @@ ActiveAdmin.register Question do
 #   permitted << :other if resource.something?
 #   permitted
 # end
+  menu priority: 7
+
+  index do
+    column :id
+    column :stem
+    column :image_file_name
+    column :practical
+    actions
+  end
 
   controller do
     def permitted_params

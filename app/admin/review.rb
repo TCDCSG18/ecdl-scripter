@@ -12,6 +12,7 @@ ActiveAdmin.register Review do
 #   permitted << :other if resource.something?
 #   permitted
 # end
+  menu priority: 9
 
   controller do
     def permitted_params

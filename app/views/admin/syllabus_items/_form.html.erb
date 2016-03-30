@@ -1,0 +1,36 @@
+<%= semantic_form_for [:admin, @syllabus_item] do |f| %>
+   <%= f.inputs :name %>
+
+   <fieldset class="inputs">
+     <div class="syl-input-pad">
+       <%= f.semantic_fields_for :test_scripts do |h| %>
+         <%= h.input :name, label: "<strong>Test Script Name:</strong>&nbsp;&nbsp;".html_safe %>
+       <% end %>
+     </div>
+   </fieldset>
+
+   <fieldset class="inputs">
+     <table>
+       <tr class="syl-pad-left">
+         <td><strong>Task Item</strong></td>
+         <td><strong>Practical</strong></td>
+         <td><strong>In Test Script 1</strong></td>
+         <td><strong>In Test Script 2</strong></td>
+         <td><strong>In Test Script 3</strong></td>
+         <td><strong>In Test Script 4</strong></td>
+       </tr>
+       <%= f.semantic_fields_for :questions do |q| %>
+         <tr>
+           <td><%= q.input :task_item, label: "" %></td>
+           <td><%= q.input :practical, label: "" %></td>
+           <td><%= q.input :belongs_to_test_0, label: "" %></td>
+           <td><%= q.input :belongs_to_test_1, label: "" %></td>
+           <td><%= q.input :belongs_to_test_2, label: "" %></td>
+           <td><%= q.input :belongs_to_test_3, label: "" %></td>
+         </tr>
+       <% end %>
+     </table>
+   </fieldset>
+
+   <%= f.actions %>
+ <% end %>

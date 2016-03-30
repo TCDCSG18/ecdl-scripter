@@ -6,10 +6,9 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
 
   authenticate :user do
-    resources :questions, only: [:new, :create, :edit, :update, :destroy]
+    resources :questions, only: [:edit, :update]
   end
   authenticate :reviewer do
-    resources :questions, only: [:show, :index]
     resources :reviews, only: [:edit, :update]
   end
 

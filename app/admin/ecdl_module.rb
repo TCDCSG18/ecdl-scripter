@@ -13,6 +13,8 @@ ActiveAdmin.register EcdlModule do
 #   permitted
 # end
 
+  menu priority: 3, label: "Modules"
+
   controller do
     def permitted_params
       params.permit ecdl_module: [ :name, :description, :module_ref ]

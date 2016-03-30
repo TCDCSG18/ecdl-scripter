@@ -12,6 +12,7 @@ ActiveAdmin.register Skillset do
 #   permitted << :other if resource.something?
 #   permitted
 # end
+  menu priority: 5
 
   controller do
     def permitted_params

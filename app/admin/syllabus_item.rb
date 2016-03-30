@@ -12,30 +12,10 @@ ActiveAdmin.register SyllabusItem do
 #   permitted << :other if resource.something?
 #   permitted
 # end
+  menu priority: 1, label: "Syllabuses"
 
 
-  form do |f|
-    f.semantic_errors
-    f.inputs do
-      f.input :name
-    end
-    f.inputs do
-      f.has_many :test_scripts, heading: 'Test Scripts', allow_destroy: false, new_record: false do |t, i|
-        t.input :name, label: i.to_s() + '/4 Name:'
-      end
-    end
-    f.inputs do
-      f.has_many :questions, heading: 'Questions', allow_destroy: false, new_record: false do |q, i|
-        q.input :task_item, label: i.to_s() + '/80 Task Item:'
-        q.input :practical
-        q.input :belongs_to_test_0
-        q.input :belongs_to_test_1
-        q.input :belongs_to_test_2
-        q.input :belongs_to_test_3
-      end
-    end
-    f.actions
-  end
+  form partial: "form"
 
   show do
     panel "" do
@@ -46,10 +26,10 @@ ActiveAdmin.register SyllabusItem do
   controller do
     def permitted_params
       params.permit syllabus_item: [ :name,
-                                     questions_attributes: [:task_item_id, :practical,
+                                     questions_attributes: [:id, :task_item_id, :practical,
                                                             :belongs_to_test_0, :belongs_to_test_1,
                                                             :belongs_to_test_2, :belongs_to_test_3, ],
-                                     test_scripts_attributes: [:name] ]
+                                     test_scripts_attributes: [:id, :name] ]
     end
     def new
       @syllabus_item = SyllabusItem.new
