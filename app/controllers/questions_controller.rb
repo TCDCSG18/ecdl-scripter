@@ -4,8 +4,8 @@ class QuestionsController < InheritedResources::Base
     @question = Question.find(params[:id])
     # should probably add logic here to ensure that question's haven't passed review
     if @question.update_attributes(question_params)
-      @review = Review.where(:question_id => @question.id).first
-      if @review.update_attributes(:status => :being_reviewed)
+      @review = @question.review
+      if @review.update_attributes(:status => :being_reviewed, :user => current_user)
         redirect_to root_path, notice: 'Question submitted successfully'
       else
         render 'edit'
