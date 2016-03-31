@@ -1,0 +1,26 @@
+docx.h1 'Test Script'
+docx.hr
+docx.p 'Sample text.'
+
+docx.p 'Sample text.', style: 'custom_style'
+
+docx.p 'Sample text.' do
+  style     'custom_style'    # sets the paragraph style. generally used at the exclusion of other attributes.
+  align     :left             # sets the alignment. accepts :left, :center, :right, and :both.
+  color     '333333'          # sets the font color.
+  size      32                # sets the font size. units in 1/2 points.
+  bold      true              # sets whether or not to render the text with a bold weight.
+  italic    false             # sets whether or not render the text in italic style.
+  underline false             # sets whether or not to underline the text.
+  bgcolor   'cccccc'          # sets the background color.
+end
+
+docx.p do
+  text 'Here is a sentence with a '
+  link 'link', 'https://www.example.com'
+  text ' to something awesome', font: 'Courier New', color: '555555', size: 32, bold: true, italic: true, underline: true, bgcolor: 'cccccc'
+  text '.'
+  br
+  text 'This text follows a line break.'
+  page
+end

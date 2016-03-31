@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'admin/test_scripts/:id', to: 'test_scripts#show', defaults: { format: 'docx' }
   devise_for :reviewers
   devise_for :users
   devise_for :admin_users, ActiveAdmin::Devise.config

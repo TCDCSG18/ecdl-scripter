@@ -41,6 +41,9 @@ gem 'devise'
 # Images are good
 gem "paperclip", "~> 4.3"
 
+# .docx is a thing
+gem 'caracal-rails'
+
 source 'https://rails-assets.org' do
   # Twitter made a nice thing
   gem 'rails-assets-bootstrap'
