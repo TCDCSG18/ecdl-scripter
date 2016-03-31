@@ -15,7 +15,6 @@
 //= require turbolinks
 //= require_tree .
 //= require bootstrap
-//= require bootstrap-select
 
 $(function() {
   var flashCallback;
