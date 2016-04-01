@@ -62,10 +62,11 @@ docx.p
 docx.p
 
 @questions.each_with_index do |question, i|
-  docx.p do
-    text ((i+1).to_s + '. '), bold: true
-    text question.stem || ''
-    text '[1 Mark]', bold: true, align: :right
+  table_top_row = [((i+1).to_s + '. '), (question.stem || ''), '[1 Mark]']
+  docx.table [table_top_row.dup] do
+    cell_style cols[0],    width: 300, bold: true
+    cell_style cols[1],    width: 7000
+    cell_style cols[2],    width: 1000, bold: true
   end
 
   if question.image.exists?
@@ -73,22 +74,20 @@ docx.p
     image_data = File.read('public' + url)
     docx.img 'https://www.example.com/logo.png' do
       data    image_data  # sets the file data directly instead of opening the url
-      width   400       # sets the image width. units specified in pixels.
-      height  400       # sets the image height. units specified in pixels.
+      width   300       # sets the image width. units specified in pixels.
+      height  300       # sets the image height. units specified in pixels.
       align   :center    # controls the justification of the image. default is :left.
-      top     10        # sets the top margin. units specified in pixels.
-      bottom  10        # sets the bottom margin. units specified in pixels.
-      left    10        # sets the left margin. units specified in pixels.
-      right   10        # sets the right margin. units specified in pixels.
     end
     docx.p
     docx.p
   end
 
   question.answers.shuffle.each_with_index do |answer, ai|
-    docx.p do
-      text answer.text||''
-      text '▢'
+    table_answer_row = ['', (answer.text || ''), '    ▢']
+    docx.table [table_answer_row.dup] do
+      cell_style cols[0],    width: 300
+      cell_style cols[1],    width: 7000
+      cell_style cols[2],    width: 1000
     end
 
     if answer.image.exists?
@@ -96,8 +95,8 @@ docx.p
       image_data = File.read('public' + url)
       docx.img 'https://www.example.com/logo.png' do
         data    image_data  # sets the file data directly instead of opening the url
-        width   100       # sets the image width. units specified in pixels.
-        height  100       # sets the image height. units specified in pixels.
+        width   50       # sets the image width. units specified in pixels.
+        height  50       # sets the image height. units specified in pixels.
         align   :center    # controls the justification of the image. default is :left.
         top     10        # sets the top margin. units specified in pixels.
         bottom  10        # sets the bottom margin. units specified in pixels.
