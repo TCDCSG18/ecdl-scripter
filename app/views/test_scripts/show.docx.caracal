@@ -1,26 +1,79 @@
-docx.h1 'Test Script'
-docx.hr
-docx.p 'Sample text.'
+#-----------------------------------------------------
+# page settings
+#-----------------------------------------------------
 
-docx.p 'Sample text.', style: 'custom_style'
-
-docx.p 'Sample text.' do
-  style     'custom_style'    # sets the paragraph style. generally used at the exclusion of other attributes.
-  align     :left             # sets the alignment. accepts :left, :center, :right, and :both.
-  color     '333333'          # sets the font color.
-  size      32                # sets the font size. units in 1/2 points.
-  bold      true              # sets whether or not to render the text with a bold weight.
-  italic    false             # sets whether or not render the text in italic style.
-  underline false             # sets whether or not to underline the text.
-  bgcolor   'cccccc'          # sets the background color.
+docx.page_numbers true do
+  align :center
 end
 
-docx.p do
-  text 'Here is a sentence with a '
-  link 'link', 'https://www.example.com'
-  text ' to something awesome', font: 'Courier New', color: '555555', size: 32, bold: true, italic: true, underline: true, bgcolor: 'cccccc'
-  text '.'
-  br
-  text 'This text follows a line break.'
-  page
+docx.font name: 'Arial'
+
+docx.style id: 'AltFont', name: 'altFont', font: 'Palatino'
+
+
+#-----------------------------------------------------
+# cover
+#-----------------------------------------------------
+
+7.times do
+  docx.p
+end
+data = Base64.encode64(File.read('public/logo.png'))
+docx.img 'public/logo.png', data: data, width: 400, height: 124, align: :center
+
+
+12.times do
+  docx.p
+end
+docx.p 'Caracal Library', style: 'Title', align: :right
+docx.p 'Capabilities Overview', style: 'Subtitle', align: :right
+docx.p
+docx.p
+docx.p Date.today.strftime('%B %d, %Y'), color: '666666', align: :right
+
+
+#-----------------------------------------------------
+# test questions
+#-----------------------------------------------------
+
+docx.page
+
+@test_script.syllabus_item.questions
+  .where("belongs_to_test_#{@test_script.syllabus_item.test_scripts.index(@test_script)}" => true)
+  .shuffle.each do |question, i|
+
+  docx.p question.stem
+  if question.image.exists?
+    url = question.image.url.split('?')[0...-1].join('?')
+    image_data = File.read('public' + url)
+    docx.img 'https://www.example.com/logo.png' do
+      data    image_data  # sets the file data directly instead of opening the url
+      width   100       # sets the image width. units specified in pixels.
+      height  100       # sets the image height. units specified in pixels.
+      align   :center    # controls the justification of the image. default is :left.
+      top     10        # sets the top margin. units specified in pixels.
+      bottom  10        # sets the bottom margin. units specified in pixels.
+      left    10        # sets the left margin. units specified in pixels.
+      right   10        # sets the right margin. units specified in pixels.
+    end
+  end
+
+  question.answers.shuffle.each do |answer|
+    docx.p answer.text
+
+    if answer.image.exists?
+      url = answer.image.url.split('?')[0...-1].join('?')
+      image_data = File.read('public' + url)
+      docx.img 'https://www.example.com/logo.png' do
+        data    image_data  # sets the file data directly instead of opening the url
+        width   100       # sets the image width. units specified in pixels.
+        height  100       # sets the image height. units specified in pixels.
+        align   :center    # controls the justification of the image. default is :left.
+        top     10        # sets the top margin. units specified in pixels.
+        bottom  10        # sets the bottom margin. units specified in pixels.
+        left    10        # sets the left margin. units specified in pixels.
+        right   10        # sets the right margin. units specified in pixels.
+      end
+    end
+  end
 end
