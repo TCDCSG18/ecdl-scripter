@@ -10,26 +10,31 @@ docx.font name: 'Arial'
 
 docx.style id: 'AltFont', name: 'altFont', font: 'Palatino'
 
+#-----------------------------------------------------
+# constants
+#-----------------------------------------------------
+test_script_name = @test_script.name
+syllabus_item_name = @test_script.syllabus_item.name
+questions_length = @questions.length.to_s
 
 #-----------------------------------------------------
 # cover
 #-----------------------------------------------------
 
-7.times do
+5.times do
   docx.p
 end
+
 data = Base64.encode64(File.read('public/logo.png'))
-docx.img 'public/logo.png', data: data, width: 400, height: 124, align: :center
+docx.img 'public/logo.png', data: data, width: 200, height: 79, align: :center
 
-
-12.times do
+5.times do
   docx.p
 end
-docx.p 'Caracal Library', style: 'Title', align: :right
-docx.p 'Capabilities Overview', style: 'Subtitle', align: :right
-docx.p
-docx.p
-docx.p Date.today.strftime('%B %d, %Y'), color: '666666', align: :right
+
+docx.p @test_script.syllabus_item.name, style: 'Title', align: :center      # syllabus item name
+docx.p @test_script.name, style: 'Subtitle', align: :center                 # test script name
+docx.p Date.today.strftime('%B %d, %Y'), style: 'Subtitle', align: :center  # today's date(date the test was exported)
 
 
 #-----------------------------------------------------
@@ -38,31 +43,56 @@ docx.p Date.today.strftime('%B %d, %Y'), color: '666666', align: :right
 
 docx.page
 
-@test_script.syllabus_item.questions
-  .where("belongs_to_test_#{@test_script.syllabus_item.test_scripts.index(@test_script)}" => true)
-  .shuffle.each do |question, i|
+docx.p do
+  text 'The following '
+  text test_script_name
+  text ' for '
+  text syllabus_item_name
+  text ', contains '
+  text questions_length
+  text ' multiple-choice questions. Attempt each of the '
+  text questions_length
+  text ' questions. Each question has '
+  text 'one', underline: true, bold: true
+  text ' correct answer.'
+end
 
-  docx.p question.stem
+docx.p
+docx.p
+docx.p
+
+@questions.each_with_index do |question, i|
+  docx.p do
+    text ((i+1).to_s + '. '), bold: true
+    text question.stem || ''
+    text '[1 Mark]', bold: true, align: :right
+  end
+
   if question.image.exists?
     url = question.image.url.split('?')[0...-1].join('?')
     image_data = File.read('public' + url)
     docx.img 'https://www.example.com/logo.png' do
       data    image_data  # sets the file data directly instead of opening the url
-      width   100       # sets the image width. units specified in pixels.
-      height  100       # sets the image height. units specified in pixels.
+      width   400       # sets the image width. units specified in pixels.
+      height  400       # sets the image height. units specified in pixels.
       align   :center    # controls the justification of the image. default is :left.
       top     10        # sets the top margin. units specified in pixels.
       bottom  10        # sets the bottom margin. units specified in pixels.
       left    10        # sets the left margin. units specified in pixels.
       right   10        # sets the right margin. units specified in pixels.
     end
+    docx.p
+    docx.p
   end
 
-  question.answers.shuffle.each do |answer|
-    docx.p answer.text
+  question.answers.shuffle.each_with_index do |answer, ai|
+    docx.p do
+      text answer.text||''
+      text '▢'
+    end
 
     if answer.image.exists?
-      url = answer.image.url.split('?')[0...-1].join('?')
+      url = answer.image.url(:medium).split('?')[0...-1].join('?')
       image_data = File.read('public' + url)
       docx.img 'https://www.example.com/logo.png' do
         data    image_data  # sets the file data directly instead of opening the url
