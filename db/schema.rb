@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160328160138) do
+ActiveRecord::Schema.define(version: 20160401171452) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -182,6 +182,10 @@ ActiveRecord::Schema.define(version: 20160328160138) do
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
     t.boolean  "approved",               default: false, null: false
+    t.string   "gauth_secret"
+    t.string   "gauth_enabled",          default: "f"
+    t.string   "gauth_tmp"
+    t.datetime "gauth_tmp_datetime"
   end
 
   add_index "users", ["approved"], name: "index_users_on_approved"

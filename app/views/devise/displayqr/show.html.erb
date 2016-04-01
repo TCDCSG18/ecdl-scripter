@@ -1,0 +1,15 @@
+<div class="cent-pan center">
+  <h2><%= I18n.t('title', {:scope => 'devise.registration'}) %></h2>
+  <%= google_authenticator_qrcode(resource) %>
+  <%= form_for(resource, :as => resource_name, :url => [:refresh, resource_name, :displayqr], :html => {:method => :post}) do |f|%>
+    <p><%= f.submit I18n.t('newtoken', {:scope => 'devise.registration'}), :class => 'btn btn-success' %></p>
+  <% end %>
+  <%= form_for(resource, :as => resource_name, :url => [resource_name, :displayqr], :html => { :method => :put }) do |f| %>
+    <%= devise_error_messages! %>
+    <%= f.hidden_field :gauth_enabled, value: "t" %>
+    <%= f.hidden_field :tmpid, value: @tmpid %>
+    <p><%= f.label :gauth_token, I18n.t('enter_token', {:scope => 'devise.registration'}) %></p>
+    <p><%= f.number_field :gauth_token, :autocomplete => :off, :class => "form-control" %></p>
+    <p><%= f.submit I18n.t('submit', {:scope => 'devise.registration'}), :class => 'btn btn-success' %></p>
+  <% end %>
+</div>

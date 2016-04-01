@@ -63,3 +63,8 @@
 .input-spacer{
   width: 40px;
 }
+
+.center {
+  padding-top: 30px;
+  text-align: center;
+}

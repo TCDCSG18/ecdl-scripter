@@ -44,6 +44,9 @@ gem "paperclip", "~> 4.3"
 # .docx is a thing
 gem 'caracal-rails'
 
+# 2FA is nice
+gem 'devise_google_authenticator', '0.3.16'
+
 source 'https://rails-assets.org' do
   # Twitter made a nice thing
   gem 'rails-assets-bootstrap'
