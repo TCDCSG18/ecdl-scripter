@@ -6,7 +6,7 @@
   <% end %>
   <%= form_for(resource, :as => resource_name, :url => [resource_name, :displayqr], :html => { :method => :put }) do |f| %>
     <%= devise_error_messages! %>
-    <%= f.hidden_field :gauth_enabled, value: "t" %>
+    <%= f.hidden_field :gauth_enabled, value: 1 %>
     <%= f.hidden_field :tmpid, value: @tmpid %>
     <p><%= f.label :gauth_token, I18n.t('enter_token', {:scope => 'devise.registration'}) %></p>
     <p><%= f.number_field :gauth_token, :autocomplete => :off, :class => "form-control" %></p>

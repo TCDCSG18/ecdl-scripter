@@ -1,14 +1,14 @@
 class HomeController < ApplicationController
   def index
     if user_signed_in?
-      if current_user.gauth_enabled == "t"
+      if current_user.gauth_enabled == "1"
         render "user_dashboard"
       else
         redirect_to user_displayqr_path
       end
     end
     if reviewer_signed_in?
-      if current_reviewer.gauth_enabled == "t"
+      if current_reviewer.gauth_enabled == "1"
         render "reviewer_dashboard"
       else
         redirect_to reviewer_displayqr_path

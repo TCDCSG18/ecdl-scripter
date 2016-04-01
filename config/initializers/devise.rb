@@ -274,7 +274,7 @@ Devise.setup do |config|
 
   # Change setting to how long to remember device before requiring another token. Change to nil to turn feature off.
   # To change the default, uncomment and change the below:
-  config.ga_remembertime = 1.hour
+  # config.ga_remembertime = 1.month
 
   # Change setting to assign the application name used by code generator. Defaults to Rails.application.class.parent_name.
   # To change the default, uncomment and change the below:
