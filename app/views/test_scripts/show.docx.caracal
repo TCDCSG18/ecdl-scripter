@@ -1,0 +1,108 @@
+#-----------------------------------------------------
+# page settings
+#-----------------------------------------------------
+
+docx.page_numbers true do
+  align :center
+end
+
+docx.font name: 'Arial'
+
+docx.style id: 'AltFont', name: 'altFont', font: 'Palatino'
+
+#-----------------------------------------------------
+# constants
+#-----------------------------------------------------
+test_script_name = @test_script.name
+syllabus_item_name = @test_script.syllabus_item.name
+questions_length = @questions.length.to_s
+
+#-----------------------------------------------------
+# cover
+#-----------------------------------------------------
+
+5.times do
+  docx.p
+end
+
+data = Base64.encode64(File.read('public/logo.png'))
+docx.img 'public/logo.png', data: data, width: 200, height: 79, align: :center
+
+5.times do
+  docx.p
+end
+
+docx.p @test_script.syllabus_item.name, style: 'Title', align: :center      # syllabus item name
+docx.p @test_script.name, style: 'Subtitle', align: :center                 # test script name
+docx.p Date.today.strftime('%B %d, %Y'), style: 'Subtitle', align: :center  # today's date(date the test was exported)
+
+
+#-----------------------------------------------------
+# test questions
+#-----------------------------------------------------
+
+docx.page
+
+docx.p do
+  text 'The following '
+  text test_script_name
+  text ' for '
+  text syllabus_item_name
+  text ', contains '
+  text questions_length
+  text ' multiple-choice questions. Attempt each of the '
+  text questions_length
+  text ' questions. Each question has '
+  text 'one', underline: true, bold: true
+  text ' correct answer.'
+end
+
+docx.p
+docx.p
+docx.p
+
+@questions.each_with_index do |question, i|
+  table_top_row = [((i+1).to_s + '. '), (question.stem || ''), '[1 Mark]']
+  docx.table [table_top_row.dup] do
+    cell_style cols[0],    width: 300, bold: true
+    cell_style cols[1],    width: 7000
+    cell_style cols[2],    width: 1000, bold: true
+  end
+
+  if question.image.exists?
+    url = question.image.url.split('?')[0...-1].join('?')
+    image_data = File.read('public' + url)
+    docx.img 'https://www.example.com/logo.png' do
+      data    image_data  # sets the file data directly instead of opening the url
+      width   300       # sets the image width. units specified in pixels.
+      height  300       # sets the image height. units specified in pixels.
+      align   :center    # controls the justification of the image. default is :left.
+    end
+    docx.p
+    docx.p
+  end
+
+  question.answers.shuffle.each_with_index do |answer, ai|
+    table_answer_row = ['', (answer.text || ''), '    ▢']
+    docx.table [table_answer_row.dup] do
+      cell_style cols[0],    width: 300
+      cell_style cols[1],    width: 7000
+      cell_style cols[2],    width: 1000
+    end
+
+    if answer.image.exists?
+      url = answer.image.url(:medium).split('?')[0...-1].join('?')
+      image_data = File.read('public' + url)
+      docx.img 'https://www.example.com/logo.png' do
+        data    image_data  # sets the file data directly instead of opening the url
+        width   50       # sets the image width. units specified in pixels.
+        height  50       # sets the image height. units specified in pixels.
+        align   :center    # controls the justification of the image. default is :left.
+        top     10        # sets the top margin. units specified in pixels.
+        bottom  10        # sets the bottom margin. units specified in pixels.
+        left    10        # sets the left margin. units specified in pixels.
+        right   10        # sets the right margin. units specified in pixels.
+      end
+    end
+  end
+end
