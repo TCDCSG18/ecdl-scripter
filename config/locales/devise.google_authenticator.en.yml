@@ -13,8 +13,16 @@ en:
       user:
         signed_in: "Signed in successfully from token."
         error: "Sign in failed"
+      reviewer:
+        signed_in: "Signed in successfully from token."
+        error: "Sign in failed"
     displayqr:
       user:
+        status: "User status updated!"
+        newtoken: "You have updated to a new token - make sure you update your Google Authenticator application before continuing!!"
+        disabled: "2FA is currently enabled"
+        enabled: "2FA is currently enabled"
+      reviewer:
         status: "User status updated!"
         newtoken: "You have updated to a new token - make sure you update your Google Authenticator application before continuing!!"
         disabled: "2FA is currently enabled"
