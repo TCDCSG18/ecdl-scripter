@@ -3,7 +3,7 @@
     <div class="panel-heading">Questions for Review</div>
     <div class="list-group">
       <% Review.being_reviewed.find_each do |review| %>
-        <%= link_to review.question.stem, edit_review_path(review), :class => "list-group-item" %>
+        <%= link_to review.question.task_item.absolute_ref, edit_review_path(review), :class => "list-group-item" %>
       <% end %>
     </div>
   </div>
