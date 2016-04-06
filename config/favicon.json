@@ -1,0 +1,38 @@
+{
+  "master_picture": "app/assets/images/master_favicon.png",
+  "favicon_design": {
+    "ios": {
+      "picture_aspect": "background_and_margin",
+      "background_color": "#ffffff",
+      "margin": "14%"
+    },
+    "desktop_browser": [
+
+    ],
+    "windows": {
+      "picture_aspect": "white_silhouette",
+      "background_color": "#014165",
+      "on_conflict": "override"
+    },
+    "android_chrome": {
+      "picture_aspect": "shadow",
+      "theme_color": "#ffffff",
+      "manifest": {
+        "name": "ECDL Scripter",
+        "display": "browser",
+        "orientation": "not_set",
+        "on_conflict": "override",
+        "declared": true
+      }
+    },
+    "safari_pinned_tab": {
+      "picture_aspect": "silhouette",
+      "theme_color": "#014165"
+    }
+  },
+  "settings": {
+    "compression": 5,
+    "scaling_algorithm": "Mitchell",
+    "error_on_image_too_small": false
+  }
+}
