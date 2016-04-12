@@ -33,8 +33,7 @@ ActiveAdmin.register SyllabusItem do
     end
     def new
       @syllabus_item = SyllabusItem.new
-      # using 8 here instead of 80 for testing, no need to make 7trillion questions when testing functionality
-      8.times { @syllabus_item.questions.build }
+      80.times { @syllabus_item.questions.build }
       4.times { @syllabus_item.test_scripts.build }
       @syllabus_item
     end
