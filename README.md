@@ -65,6 +65,19 @@ If the result of the following command contains `.nvm` as opposed to `/usr/bin` 
 which node
 ```
 
+### Postgres
+Given that we use postgres as our production database we will need it installed:
+###### Ubuntu
+
+```bash
+apt-get install postgresql-9.4
+```
+###### OS X
+```bash
+brew install postgres
+```
+
+
 ### [Paperclip Dependencies](https://github.com/thoughtbot/paperclip#requirements)
 We use paperclip for image processing so we will need to install their dependencies, the main thing we need is ImageMagick.
 
@@ -114,9 +127,25 @@ For the purposes of this example we'll set the app up on a [digital ocean](https
 
 Sign up to [digital ocean](https://www.digitalocean.com/) and spawn a new droplet running Ubuntu 14.04 x64.
 
-ssh into droplet
+SSH into droplet
 ```bash
 ssh root@SERVERIP
+```
+
+For this example our droplet only has 500mb of RAM so we'll need to add some swap so that it can handle the install process:
+```bash
+sudo fallocate -l 1G /swapfile
+sudo chmod 600 /swapfile
+sudo mkswap /swapfile
+sudo swapon /swapfile
+echo "/swapfile    none    swap    sw    0    0" >> /etc/fstab
+echo "vm.swappiness = 10" >> /etc/sysctl.conf
+echo "vm.vfs_cache_pressure = 50" >> /etc/sysctl.conf
+```
+
+We will need to reboot the server for this swap addition to take effect
+```bash
+reboot
 ```
 
 Install dokku:
@@ -136,14 +165,30 @@ dokku postgres:link ecdl-scripter ecdl-scripter
 dokku docker-options:add ecdl-scripter run,deploy "-v /home/storage:/app/public/system"
 ```
 
-Add remote repo to local (on development machine, not server):
+If we configured the hostname in the web admin, an optional step is to assign a domain to the dokku site.
 ```bash
-git add remote dokku dokku@SERVERIP:ecdl-scripter
+dokku domains:add ecdl-scripter example.com
 ```
 
-Push:
+Now we will logout and push our code to the droplet.
+```bash
+logout
+```
+
+The following 2 commands are to be executed on a development machine that has the repo cloned:
+(LOCAL) Add remote repo to local:
+```bash
+git remote add dokku dokku@SERVERIP:ecdl-scripter
+```
+
+(LOCAL) Push:
 ```bash
 git push dokku master
+```
+
+Now we will SSH back into the machine and run the initial migration
+```bash
+ssh root@SERVERIP
 ```
 
 Run Migration:
