@@ -64,7 +64,7 @@ docx.p
 @questions.each_with_index do |question, i|
   table_top_row = [((i+1).to_s + '. '), (question.stem || ''), '[1 Mark]']
   docx.table [table_top_row.dup] do
-    cell_style cols[0],    width: 300, bold: true
+    cell_style cols[0],    width: 600, bold: true
     cell_style cols[1],    width: 7000
     cell_style cols[2],    width: 1000, bold: true
   end
@@ -85,7 +85,7 @@ docx.p
   question.answers.shuffle.each_with_index do |answer, ai|
     table_answer_row = ['', (answer.text || ''), '    ▢']
     docx.table [table_answer_row.dup] do
-      cell_style cols[0],    width: 300
+      cell_style cols[0],    width: 600
       cell_style cols[1],    width: 7000
       cell_style cols[2],    width: 1000
     end
